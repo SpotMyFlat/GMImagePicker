@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		67894FCE1B6CE4CC00D2B5FC /* GMCameraIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 67894FCB1B6CE4CC00D2B5FC /* GMCameraIcon.png */; };
+		67894FCF1B6CE4CC00D2B5FC /* GMCameraIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 67894FCC1B6CE4CC00D2B5FC /* GMCameraIcon@2x.png */; };
+		67894FD01B6CE4CC00D2B5FC /* GMCameraIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 67894FCD1B6CE4CC00D2B5FC /* GMCameraIcon@3x.png */; };
+		67894FD21B6CF36900D2B5FC /* GMCameraCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67894FD11B6CF36900D2B5FC /* GMCameraCell.xib */; };
+		67894FD51B6CF37900D2B5FC /* GMCameraCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 67894FD41B6CF37900D2B5FC /* GMCameraCell.m */; };
 		B31E08651A0C45BC000D7841 /* GMImagePicker.strings in Resources */ = {isa = PBXBuildFile; fileRef = B31E084C1A0C45BC000D7841 /* GMImagePicker.strings */; };
 		B31E08661A0C45BC000D7841 /* GMImagePicker.strings in Resources */ = {isa = PBXBuildFile; fileRef = B31E084F1A0C45BC000D7841 /* GMImagePicker.strings */; };
 		B31E08671A0C45BC000D7841 /* GMImagePicker.strings in Resources */ = {isa = PBXBuildFile; fileRef = B31E08521A0C45BC000D7841 /* GMImagePicker.strings */; };
@@ -46,6 +51,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		67894FCB1B6CE4CC00D2B5FC /* GMCameraIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GMCameraIcon.png; sourceTree = "<group>"; };
+		67894FCC1B6CE4CC00D2B5FC /* GMCameraIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GMCameraIcon@2x.png"; sourceTree = "<group>"; };
+		67894FCD1B6CE4CC00D2B5FC /* GMCameraIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GMCameraIcon@3x.png"; sourceTree = "<group>"; };
+		67894FD11B6CF36900D2B5FC /* GMCameraCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMCameraCell.xib; sourceTree = "<group>"; };
+		67894FD31B6CF37900D2B5FC /* GMCameraCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMCameraCell.h; sourceTree = "<group>"; };
+		67894FD41B6CF37900D2B5FC /* GMCameraCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMCameraCell.m; sourceTree = "<group>"; };
 		B31E084D1A0C45BC000D7841 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = GMImagePicker.strings; sourceTree = "<group>"; };
 		B31E08501A0C45BC000D7841 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = GMImagePicker.strings; sourceTree = "<group>"; };
 		B31E08531A0C45BC000D7841 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = GMImagePicker.strings; sourceTree = "<group>"; };
@@ -244,6 +255,9 @@
 				B321E47319D1A5FD0021FE16 /* GMEmptyFolder@2x.png */,
 				B321E46819D19A5B0021FE16 /* GMSelected.png */,
 				B321E46919D19A5B0021FE16 /* GMSelected@2x.png */,
+				67894FCB1B6CE4CC00D2B5FC /* GMCameraIcon.png */,
+				67894FCC1B6CE4CC00D2B5FC /* GMCameraIcon@2x.png */,
+				67894FCD1B6CE4CC00D2B5FC /* GMCameraIcon@3x.png */,
 				B3A2F8A419D18A3700A59BE4 /* GMAlbumsViewCell.h */,
 				B3A2F8A519D18A3700A59BE4 /* GMAlbumsViewCell.m */,
 				B3A2F8A619D18A3700A59BE4 /* GMAlbumsViewController.h */,
@@ -254,6 +268,9 @@
 				B3A2F8AB19D18A3700A59BE4 /* GMGridViewController.m */,
 				B3A2F8AC19D18A3700A59BE4 /* GMImagePickerController.h */,
 				B3A2F8AD19D18A3700A59BE4 /* GMImagePickerController.m */,
+				67894FD11B6CF36900D2B5FC /* GMCameraCell.xib */,
+				67894FD31B6CF37900D2B5FC /* GMCameraCell.h */,
+				67894FD41B6CF37900D2B5FC /* GMCameraCell.m */,
 			);
 			name = GMImagePicker;
 			path = ../../GMImagePicker;
@@ -308,7 +325,7 @@
 				TargetAttributes = {
 					B37D577319CA3B3A007F64BD = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = 683CMQCKAS;
+						DevelopmentTeam = H2LAR6DL5V;
 					};
 					B37D578C19CA3B3A007F64BD = {
 						CreatedOnToolsVersion = 6.0;
@@ -348,10 +365,14 @@
 			files = (
 				B321E46F19D19A5B0021FE16 /* GMSelected@2x.png in Resources */,
 				B31E086A1A0C45BC000D7841 /* GMImagePicker.strings in Resources */,
+				67894FCF1B6CE4CC00D2B5FC /* GMCameraIcon@2x.png in Resources */,
+				67894FCE1B6CE4CC00D2B5FC /* GMCameraIcon.png in Resources */,
+				67894FD21B6CF36900D2B5FC /* GMCameraCell.xib in Resources */,
 				B37D57A019CA44B3007F64BD /* Info.plist in Resources */,
 				B321E46E19D19A5B0021FE16 /* GMSelected.png in Resources */,
 				B321E47419D1A5FD0021FE16 /* GMEmptyFolder@1x.png in Resources */,
 				B31E086C1A0C45BC000D7841 /* GMImagePicker.strings in Resources */,
+				67894FD01B6CE4CC00D2B5FC /* GMCameraIcon@3x.png in Resources */,
 				B31E086B1A0C45BC000D7841 /* GMImagePicker.strings in Resources */,
 				B31E08681A0C45BC000D7841 /* GMImagePicker.strings in Resources */,
 				B321E47519D1A5FD0021FE16 /* GMEmptyFolder@2x.png in Resources */,
@@ -380,6 +401,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67894FD51B6CF37900D2B5FC /* GMCameraCell.m in Sources */,
 				B3A2F8AE19D18A3700A59BE4 /* GMAlbumsViewCell.m in Sources */,
 				B37D578019CA3B3A007F64BD /* ViewController.m in Sources */,
 				B3A2F8B019D18A3700A59BE4 /* GMGridViewCell.m in Sources */,
@@ -510,7 +532,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -552,7 +574,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -579,6 +601,7 @@
 				INFOPLIST_FILE = GMPhotoPicker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -590,6 +613,7 @@
 				INFOPLIST_FILE = GMPhotoPicker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

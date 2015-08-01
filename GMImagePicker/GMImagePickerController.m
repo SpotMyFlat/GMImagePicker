@@ -98,9 +98,6 @@
     [self.selectedAssets removeObjectAtIndex:[self.selectedAssets indexOfObject:asset]];
     if(self.selectedAssets.count == 0)
         [self updateDoneButton];
-    
-    if(self.displaySelectionInfoToolbar)
-        [self updateToolbar];
 }
 
 - (void)updateDoneButton
@@ -116,7 +113,7 @@
     for (UIViewController *viewController in nav.viewControllers)
     {
         [[viewController.toolbarItems objectAtIndex:1] setTitle:[self toolbarTitle]];
-        [viewController.navigationController setToolbarHidden:(self.selectedAssets.count == 0) animated:YES];
+        [viewController.navigationController setToolbarHidden:YES animated:NO];
     }
 }
 
