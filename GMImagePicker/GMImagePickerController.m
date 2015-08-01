@@ -58,7 +58,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.colsInPortrait = 3;
+    self.colsInLandscape = 5;
+    self.minimumInteritemSpacing = 2.0f;
 }
 
 - (void)didReceiveMemoryWarning

@@ -36,11 +36,6 @@
 {
     GMImagePickerController *picker = [[GMImagePickerController alloc] init];
     picker.delegate = self;
-    picker.title = @"Custom title";
-    picker.customNavigationBarPrompt = @"Custom helper message!";
-    picker.colsInPortrait = 3;
-    picker.colsInLandscape = 5;
-    picker.minimumInteritemSpacing = 2.0;
     picker.modalPresentationStyle = UIModalPresentationPopover;
     
     UIPopoverPresentationController *popPC = picker.popoverPresentationController;
@@ -90,6 +85,13 @@
     [picker.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     
     NSLog(@"GMImagePicker: User ended picking assets. Number of selected items is: %lu", (unsigned long)assetArray.count);
+}
+
+- (void)assetsPickerController:(GMImagePickerController *)picker didFinishPickingImageFromCamera:(UIImage *)editedImage {
+    
+    [picker.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    
+    NSLog(@"Camera");
 }
 
 //Optional implementation:

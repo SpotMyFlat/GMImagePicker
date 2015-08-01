@@ -46,11 +46,6 @@ static CGSize const kPopoverContentSize = {480, 720};
 @property (nonatomic, strong) NSArray* customSmartCollections;
 
 /**
- *  If set, it displays a promt in the navigation bar
- */
-@property (nonatomic) NSString* customNavigationBarPrompt;
-
-/**
  *  Determines whether or not a toolbar with info about user selection is shown.
  *  The InfoToolbar is visible by default.
  */
@@ -105,6 +100,8 @@ static CGSize const kPopoverContentSize = {480, 720};
  */
 
 - (void)assetsPickerController:(GMImagePickerController *)picker didFinishPickingAssets:(NSArray *)assets;
+
+- (void)assetsPickerController:(GMImagePickerController *)picker didFinishPickingImageFromCamera:(UIImage *)editedImage;
 
 
 @optional

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		672884341B6D1A1C00E68548 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 672884331B6D1A1C00E68548 /* AVFoundation.framework */; };
 		67894FCE1B6CE4CC00D2B5FC /* GMCameraIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 67894FCB1B6CE4CC00D2B5FC /* GMCameraIcon.png */; };
 		67894FCF1B6CE4CC00D2B5FC /* GMCameraIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 67894FCC1B6CE4CC00D2B5FC /* GMCameraIcon@2x.png */; };
 		67894FD01B6CE4CC00D2B5FC /* GMCameraIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 67894FCD1B6CE4CC00D2B5FC /* GMCameraIcon@3x.png */; };
@@ -51,6 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		672884331B6D1A1C00E68548 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		67894FCB1B6CE4CC00D2B5FC /* GMCameraIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GMCameraIcon.png; sourceTree = "<group>"; };
 		67894FCC1B6CE4CC00D2B5FC /* GMCameraIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GMCameraIcon@2x.png"; sourceTree = "<group>"; };
 		67894FCD1B6CE4CC00D2B5FC /* GMCameraIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GMCameraIcon@3x.png"; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				672884341B6D1A1C00E68548 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,6 +184,7 @@
 		B37D576B19CA3B39007F64BD = {
 			isa = PBXGroup;
 			children = (
+				672884331B6D1A1C00E68548 /* AVFoundation.framework */,
 				B37D577619CA3B3A007F64BD /* GMPhotoPicker */,
 				B37D579019CA3B3A007F64BD /* GMPhotoPickerTests */,
 				B37D577519CA3B3A007F64BD /* Products */,
