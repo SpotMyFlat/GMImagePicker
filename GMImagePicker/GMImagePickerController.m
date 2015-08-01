@@ -8,6 +8,7 @@
 
 #import "GMImagePickerController.h"
 #import "GMAlbumsViewController.h"
+
 @import Photos;
 
 @interface GMImagePickerController () <UINavigationControllerDelegate>
@@ -64,12 +65,6 @@
     self.minimumInteritemSpacing = 2.0f;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - Setup Navigation Controller
 
 - (void)setupNavigationController
@@ -84,7 +79,6 @@
     [self addChildViewController:_navigationController];
     [_navigationController didMoveToParentViewController:self];
 }
-
 #pragma mark - Select / Deselect Asset
 
 - (void)selectAsset:(PHAsset *)asset

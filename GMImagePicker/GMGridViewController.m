@@ -11,6 +11,11 @@
 #import "GMAlbumsViewController.h"
 #import "GMGridViewCell.h"
 #import "GMCameraCell.h"
+#import "GMCameraPickerVC.h"
+
+@interface GMGridViewController ()
+
+@end
 
 @import Photos;
 
@@ -128,9 +133,10 @@ NSString * const GMCameraCellIdentifier = @"GMCameraCellIdentifier";
     [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:NO];
     
     [self setupButtons];
     [self setupToolbar];
@@ -375,7 +381,10 @@ NSString * const GMCameraCellIdentifier = @"GMCameraCellIdentifier";
 {
     if ([indexPath compare:[NSIndexPath indexPathForItem:0 inSection:0]] == NSOrderedSame) {
         [collectionView deselectItemAtIndexPath:indexPath animated:NO];
-        NSLog(@"Attempt to take a photo");
+        
+        GMCameraPickerVC *picker = [[GMCameraPickerVC alloc] initWithNibName:@"GMCameraPickerVC" bundle:nil];
+        [self.navigationController pushViewController:picker animated:YES];
+        
         return;
     }
     NSIndexPath *actualIndexPath = [NSIndexPath indexPathForItem:(indexPath.item - 1) inSection:indexPath.section];

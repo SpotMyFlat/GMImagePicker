@@ -25,7 +25,8 @@
     
     AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
     
-//    if (status == AVAuthorizationStatusAuthorized) {
+    if (status == AVAuthorizationStatusAuthorized &&
+        [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
     
     self.session = [AVCaptureSession new];
     [self.session setSessionPreset:AVCaptureSessionPresetPhoto];
@@ -85,7 +86,7 @@
     });
     
     
-//    }
+    }
 }
 
 @end
