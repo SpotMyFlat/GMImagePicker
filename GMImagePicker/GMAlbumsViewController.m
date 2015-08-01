@@ -45,26 +45,28 @@ static NSString * const CollectionCellReuseIdentifier = @"CollectionCell";
 {
     [super viewDidLoad];
     
-    //Navigation bar customization_
-    if(self.picker.customNavigationBarPrompt)
-    {
-        self.navigationItem.prompt = self.picker.customNavigationBarPrompt;
-    }
-    
     self.imageManager = [[PHCachingImageManager alloc] init];
     
     //Table view aspect
     self.tableView.rowHeight = kAlbumRowHeight;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.backgroundColor = [UIColor blackColor];
 
     //Navigation bar items
     //if (self.picker.showsCancelButton)
     {
+        self.navigationItem.title = @"";
+        
         self.navigationItem.leftBarButtonItem =
         [[UIBarButtonItem alloc] initWithTitle:NSLocalizedStringFromTable(@"picker.navigation.cancel-button", @"GMImagePicker",@"Cancel")
                                          style:UIBarButtonItemStylePlain
                                         target:self.picker
                                         action:@selector(dismiss:)];
+        [self.navigationItem.leftBarButtonItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                       [UIFont fontWithName:@"AvenirNext-Medium" size:16.0], NSFontAttributeName,
+                                                                       [UIColor lightGrayColor], NSForegroundColorAttributeName,
+                                                                       nil] 
+                                                             forState:UIControlStateNormal];
     }
     
     self.navigationItem.rightBarButtonItem =
@@ -73,16 +75,19 @@ static NSString * const CollectionCellReuseIdentifier = @"CollectionCell";
                                     target:self.picker
                                     action:@selector(finishPickingAssets:)];
     
+    [self.navigationItem.rightBarButtonItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                   [UIFont fontWithName:@"AvenirNext-DemiBold" size:16.0], NSFontAttributeName,
+                                                                   [UIColor whiteColor], NSForegroundColorAttributeName,
+                                                                   nil]
+                                                         forState:UIControlStateNormal];
+    
     self.navigationItem.rightBarButtonItem.enabled = (self.picker.selectedAssets.count > 0);
     
     //Bottom toolbar
     self.toolbarItems = self.picker.toolbarItems;
     
     //Title
-    if (!self.picker.title)
-        self.title = NSLocalizedStringFromTable(@"picker.navigation.title", @"GMImagePicker",@"Navigation bar default title");
-    else
-        self.title = self.picker.title;
+    self.title = @"";
     
 
     // TO-DO Customizable predicates:
@@ -351,10 +356,11 @@ static NSString * const CollectionCellReuseIdentifier = @"CollectionCell";
 {
     UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
     
+    header.contentView.backgroundColor = [UIColor darkGrayColor];
     //Here you can customize header views!
     header.textLabel.font = [UIFont systemFontOfSize:14.0f]; //Set font to "normal" style (default is bold) and to 14 pts.
     //header.textLabel.font = [UIFont boldSystemFontOfSize:14.0f];
-    //header.textLabel.textColor = [UIColor orangeColor];
+    header.textLabel.textColor = [UIColor whiteColor];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section

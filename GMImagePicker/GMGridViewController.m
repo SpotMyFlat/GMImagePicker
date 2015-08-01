@@ -123,12 +123,6 @@ NSString * const GMCameraCellIdentifier = @"GMCameraCellIdentifier";
     [super viewDidLoad];
     [self setupViews];
     
-    //Navigation bar customization_
-    if(self.picker.customNavigationBarPrompt)
-    {
-        self.navigationItem.prompt = self.picker.customNavigationBarPrompt;
-    }
-    
     self.imageManager = [[PHCachingImageManager alloc] init];
     [self resetCachedAssets];
     [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
@@ -213,6 +207,18 @@ NSString * const GMCameraCellIdentifier = @"GMCameraCellIdentifier";
                                     action:@selector(finishPickingAssets:)];
     
     self.navigationItem.rightBarButtonItem.enabled = (self.picker.selectedAssets.count > 0);
+    
+    [self.navigationItem.backBarButtonItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                   [UIFont fontWithName:@"AvenirNext-DemiBold" size:16.0], NSFontAttributeName,
+                                                                   [UIColor whiteColor], NSForegroundColorAttributeName,
+                                                                   nil]
+                                                         forState:UIControlStateNormal];
+    
+    [self.navigationItem.rightBarButtonItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                    [UIFont fontWithName:@"AvenirNext-DemiBold" size:16.0], NSFontAttributeName,
+                                                                    [UIColor whiteColor], NSForegroundColorAttributeName,
+                                                                    nil]
+                                                          forState:UIControlStateNormal];
 }
 
 - (void)setupToolbar

@@ -30,6 +30,7 @@
         //self.textLabel.backgroundColor          = self.backgroundColor;
         //self.detailTextLabel.backgroundColor    = self.backgroundColor;
         
+        self.backgroundColor = [UIColor blackColor];
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
         //Border width of 1 pixel:
@@ -39,7 +40,7 @@
         _imageView3 = [UIImageView new];
         _imageView3.contentMode = UIViewContentModeScaleAspectFill;
         _imageView3.frame = CGRectMake(kAlbumLeftToImageSpace+4, 8, kAlbumThumbnailSize3.width, kAlbumThumbnailSize3.height );
-        [_imageView3.layer setBorderColor: [[UIColor whiteColor] CGColor]];
+        [_imageView3.layer setBorderColor: [[UIColor blackColor] CGColor]];
         [_imageView3.layer setBorderWidth: borderWidth];
         _imageView3.clipsToBounds = YES;
         _imageView3.translatesAutoresizingMaskIntoConstraints = YES;
@@ -50,7 +51,7 @@
         _imageView2 = [UIImageView new];
         _imageView2.contentMode = UIViewContentModeScaleAspectFill;
         _imageView2.frame = CGRectMake(kAlbumLeftToImageSpace+2, 8+2, kAlbumThumbnailSize2.width, kAlbumThumbnailSize2.height );
-        [_imageView2.layer setBorderColor: [[UIColor whiteColor] CGColor]];
+        [_imageView2.layer setBorderColor: [[UIColor blackColor] CGColor]];
         [_imageView2.layer setBorderWidth: borderWidth];
         _imageView2.clipsToBounds = YES;
         _imageView2.translatesAutoresizingMaskIntoConstraints = YES;
@@ -61,7 +62,7 @@
         _imageView1 = [UIImageView new];
         _imageView1.contentMode = UIViewContentModeScaleAspectFill;
         _imageView1.frame = CGRectMake(kAlbumLeftToImageSpace, 8+4, kAlbumThumbnailSize1.width, kAlbumThumbnailSize1.height );
-        [_imageView1.layer setBorderColor: [[UIColor whiteColor] CGColor]];
+        [_imageView1.layer setBorderColor: [[UIColor blackColor] CGColor]];
         [_imageView1.layer setBorderWidth: borderWidth];
         _imageView1.clipsToBounds = YES;
         _imageView1.translatesAutoresizingMaskIntoConstraints = YES;
@@ -97,13 +98,15 @@
 
         
         //TextLabel
-        self.textLabel.font = [UIFont fontWithName:@"Helvetica" size:17.0];
+        self.textLabel.font = [UIFont fontWithName:@"AvenirNext-DemiBold" size:16.0];
         self.textLabel.numberOfLines = 1;
         self.textLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        self.textLabel.textColor = [UIColor whiteColor];
         
-        self.detailTextLabel.font = [UIFont fontWithName:@"Helvetica" size:14.0];
+        self.detailTextLabel.font = [UIFont fontWithName:@"AvenirNext-Medium" size:14.0];
         self.detailTextLabel.numberOfLines = 1;
         self.detailTextLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        self.detailTextLabel.textColor = [UIColor whiteColor];
         
         //Set next text labels contraints :
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[imageView1]-(offset)-[textLabel]-|"
