@@ -87,7 +87,7 @@ static NSString * const CollectionCellReuseIdentifier = @"CollectionCell";
     self.toolbarItems = self.picker.toolbarItems;
     
     //Title
-    self.title = @"";
+    self.title = NSLocalizedStringFromTable(@"picker.albums", @"GMImagePicker",@"Albums");
     
 
     // TO-DO Customizable predicates:

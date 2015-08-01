@@ -355,7 +355,11 @@ NSString * const GMCameraCellIdentifier = @"GMCameraCellIdentifier";
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    PHAsset *asset = self.assetsFetchResults[indexPath.item];
+    if ([indexPath compare:[NSIndexPath indexPathForItem:0 inSection:0]] == NSOrderedSame) {
+        return YES;
+    }
+    NSIndexPath *actualIndexPath = [NSIndexPath indexPathForItem:(indexPath.item - 1) inSection:indexPath.section];
+    PHAsset *asset = self.assetsFetchResults[actualIndexPath.item];
     
     GMGridViewCell *cell = (GMGridViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
     
@@ -369,7 +373,13 @@ NSString * const GMCameraCellIdentifier = @"GMCameraCellIdentifier";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    PHAsset *asset = self.assetsFetchResults[indexPath.item];
+    if ([indexPath compare:[NSIndexPath indexPathForItem:0 inSection:0]] == NSOrderedSame) {
+        [collectionView deselectItemAtIndexPath:indexPath animated:NO];
+        NSLog(@"Attempt to take a photo");
+        return;
+    }
+    NSIndexPath *actualIndexPath = [NSIndexPath indexPathForItem:(indexPath.item - 1) inSection:indexPath.section];
+    PHAsset *asset = self.assetsFetchResults[actualIndexPath.item];
     
     [self.picker selectAsset:asset];
     
@@ -379,7 +389,11 @@ NSString * const GMCameraCellIdentifier = @"GMCameraCellIdentifier";
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    PHAsset *asset = self.assetsFetchResults[indexPath.item];
+    if ([indexPath compare:[NSIndexPath indexPathForItem:0 inSection:0]] == NSOrderedSame) {
+        return NO;
+    }
+    NSIndexPath *actualIndexPath = [NSIndexPath indexPathForItem:(indexPath.item - 1) inSection:indexPath.section];
+    PHAsset *asset = self.assetsFetchResults[actualIndexPath.item];
     
     if ([self.picker.delegate respondsToSelector:@selector(assetsPickerController:shouldDeselectAsset:)])
         return [self.picker.delegate assetsPickerController:self.picker shouldDeselectAsset:asset];
@@ -389,7 +403,11 @@ NSString * const GMCameraCellIdentifier = @"GMCameraCellIdentifier";
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    PHAsset *asset = self.assetsFetchResults[indexPath.item];
+    if ([indexPath compare:[NSIndexPath indexPathForItem:0 inSection:0]] == NSOrderedSame) {
+        return;
+    }
+    NSIndexPath *actualIndexPath = [NSIndexPath indexPathForItem:(indexPath.item - 1) inSection:indexPath.section];
+    PHAsset *asset = self.assetsFetchResults[actualIndexPath.item];
     
     [self.picker deselectAsset:asset];
     
@@ -399,7 +417,11 @@ NSString * const GMCameraCellIdentifier = @"GMCameraCellIdentifier";
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    PHAsset *asset = self.assetsFetchResults[indexPath.item];
+    if ([indexPath compare:[NSIndexPath indexPathForItem:0 inSection:0]] == NSOrderedSame) {
+        return YES;
+    }
+    NSIndexPath *actualIndexPath = [NSIndexPath indexPathForItem:(indexPath.item - 1) inSection:indexPath.section];
+    PHAsset *asset = self.assetsFetchResults[actualIndexPath.item];
     
     if ([self.picker.delegate respondsToSelector:@selector(assetsPickerController:shouldHighlightAsset:)])
         return [self.picker.delegate assetsPickerController:self.picker shouldHighlightAsset:asset];
@@ -409,7 +431,11 @@ NSString * const GMCameraCellIdentifier = @"GMCameraCellIdentifier";
 
 - (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    PHAsset *asset = self.assetsFetchResults[indexPath.item];
+    if ([indexPath compare:[NSIndexPath indexPathForItem:0 inSection:0]] == NSOrderedSame) {
+        return;
+    }
+    NSIndexPath *actualIndexPath = [NSIndexPath indexPathForItem:(indexPath.item - 1) inSection:indexPath.section];
+    PHAsset *asset = self.assetsFetchResults[actualIndexPath.item];
     
     if ([self.picker.delegate respondsToSelector:@selector(assetsPickerController:didHighlightAsset:)])
         [self.picker.delegate assetsPickerController:self.picker didHighlightAsset:asset];
@@ -417,7 +443,11 @@ NSString * const GMCameraCellIdentifier = @"GMCameraCellIdentifier";
 
 - (void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    PHAsset *asset = self.assetsFetchResults[indexPath.item];
+    if ([indexPath compare:[NSIndexPath indexPathForItem:0 inSection:0]] == NSOrderedSame) {
+        return;
+    }
+    NSIndexPath *actualIndexPath = [NSIndexPath indexPathForItem:(indexPath.item - 1) inSection:indexPath.section];
+    PHAsset *asset = self.assetsFetchResults[actualIndexPath.item];
     
     if ([self.picker.delegate respondsToSelector:@selector(assetsPickerController:didUnhighlightAsset:)])
         [self.picker.delegate assetsPickerController:self.picker didUnhighlightAsset:asset];
