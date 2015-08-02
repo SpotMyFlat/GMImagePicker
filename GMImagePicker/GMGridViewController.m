@@ -136,10 +136,25 @@ NSString * const GMCameraCellIdentifier = @"GMCameraCellIdentifier";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
+    self.navigationController.navigationBar.translucent = NO;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:animated];
+    
+    UILabel * titleView = [[UILabel alloc] initWithFrame:CGRectZero];
+    titleView.backgroundColor = [UIColor clearColor];
+    titleView.font = [UIFont fontWithName:@"AvenirNext-DemiBold" size:16.0f];
+    titleView.textColor = [UIColor whiteColor];
+    titleView.text = self.title;
+    [titleView sizeToFit];
+    self.navigationItem.titleView = titleView;
+    
     [self.navigationController setNavigationBarHidden:NO];
     
     [self setupButtons];
     [self setupToolbar];
+    
+    [(GMCameraCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]] setCameraEnabled:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -370,6 +385,18 @@ NSString * const GMCameraCellIdentifier = @"GMCameraCellIdentifier";
 
 #pragma mark - Collection View Delegate
 
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    if ([indexPath compare:[NSIndexPath indexPathForItem:0 inSection:0]] == NSOrderedSame) {
+        [(GMCameraCell *)cell setCameraEnabled:YES];
+    }
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    if ([indexPath compare:[NSIndexPath indexPathForItem:0 inSection:0]] == NSOrderedSame) {
+        [(GMCameraCell *)cell setCameraEnabled:NO];
+    }
+}
+
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([indexPath compare:[NSIndexPath indexPathForItem:0 inSection:0]] == NSOrderedSame) {
@@ -392,6 +419,8 @@ NSString * const GMCameraCellIdentifier = @"GMCameraCellIdentifier";
 {
     if ([indexPath compare:[NSIndexPath indexPathForItem:0 inSection:0]] == NSOrderedSame) {
         [collectionView deselectItemAtIndexPath:indexPath animated:NO];
+        
+        [(GMCameraCell *)[collectionView cellForItemAtIndexPath:indexPath] setCameraEnabled:NO];
         
         GMCameraPickerVC *picker = [[GMCameraPickerVC alloc] initWithNibName:@"GMCameraPickerVC" bundle:nil];
         picker.delegate = self;

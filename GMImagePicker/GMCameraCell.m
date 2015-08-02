@@ -20,6 +20,17 @@
 
 @implementation GMCameraCell
 
+- (void)setCameraEnabled:(BOOL)enabled {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        if (enabled && self.session && ![self.session isRunning]) {
+            [self.session startRunning];
+        }
+        else if (self.session && [self.session isRunning]) {
+            [self.session stopRunning];
+        }
+    });
+}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     
@@ -79,9 +90,6 @@
         self.previewLayer.frame = CGRectMake(0.0, 0.0, size, size);
         dispatch_async(dispatch_get_main_queue(), ^{
             [rootLayer insertSublayer:self.previewLayer atIndex:0];
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-                [self.session startRunning];
-            });
         });
     });
     

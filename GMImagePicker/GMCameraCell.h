@@ -14,4 +14,6 @@
 @property (weak, nonatomic) IBOutlet UIView *cameraView;
 @property (weak, nonatomic) IBOutlet UIImageView *captureIconImageView;
 
+- (void)setCameraEnabled:(BOOL)enabled;
+
 @end

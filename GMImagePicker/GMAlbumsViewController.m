@@ -45,6 +45,10 @@ static NSString * const CollectionCellReuseIdentifier = @"CollectionCell";
 {
     [super viewDidLoad];
     
+    [[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                          [UIFont fontWithName:@"AvenirNext-Medium" size:16.0], NSFontAttributeName,
+                                                          nil]  forState:UIControlStateNormal];
+    
     self.imageManager = [[PHCachingImageManager alloc] init];
     
     //Table view aspect
@@ -107,17 +111,18 @@ static NSString * const CollectionCellReuseIdentifier = @"CollectionCell";
     
     [self updateFetchResults];
     
+    //Init the GMGridViewController
+    GMGridViewController *gridViewController = [[GMGridViewController alloc] initWithPicker:[self picker]];
+    gridViewController.title = NSLocalizedStringFromTable(@"picker.table.all-photos-label", @"GMImagePicker",@"Albums");
+    gridViewController.assetsFetchResults = [[_collectionsFetchResultsAssets objectAtIndex:0] objectAtIndex:0];
+    [self.navigationController pushViewController:gridViewController animated:NO];
+    
     //Register for changes
     [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
-    self.navigationController.navigationBar.translucent = NO;
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:animated];
 }
 
 - (void)dealloc
@@ -401,8 +406,7 @@ static NSString * const CollectionCellReuseIdentifier = @"CollectionCell";
         }
         
         //This only affects to changes in albums level (add/remove/edit album)
-        if (updatedCollectionsFetchResults)
-        {
+        if (updatedCollectionsFetchResults) {
             self.collectionsFetchResults = updatedCollectionsFetchResults;
         }
         
