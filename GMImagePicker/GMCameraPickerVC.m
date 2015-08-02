@@ -9,14 +9,24 @@
 #import "GMCameraPickerVC.h"
 #import "FastttCamera.h"
 
+typedef enum GMCameraPickerVCState : NSUInteger {
+    Shoot,
+    Preview
+} GMCameraPickerVCState;
+
 @interface GMCameraPickerVC () <FastttCameraDelegate>
 
 @property (nonatomic, strong) FastttCamera *camera;
 
 @property (weak, nonatomic) IBOutlet UIView *cameraView;
+@property (weak, nonatomic) IBOutlet UIButton *retakeButton;
 @property (weak, nonatomic) IBOutlet UIButton *flashButton;
 @property (weak, nonatomic) IBOutlet UIButton *rotateButton;
 @property (weak, nonatomic) IBOutlet UIButton *captureButton;
+
+@property (nonatomic, assign) GMCameraPickerVCState state;
+
+@property (nonatomic, strong) UIImage *previewPhoto;
 
 @end
 
@@ -30,6 +40,8 @@
     [self fastttAddChildViewController:self.camera];
     [self.view bringSubviewToFront:self.flashButton];
     [self.view bringSubviewToFront:self.rotateButton];
+    
+    self.state = Shoot;
 }
 
 - (void)viewDidLayoutSubviews {
@@ -54,12 +66,17 @@
 #pragma mark - FastttCameraDelegate
 
 - (void)cameraController:(id<FastttCameraInterface>)cameraController didFinishNormalizingCapturedImage:(FastttCapturedImage *)capturedImage {
-    if ([self.delegate respondsToSelector:@selector(cameraPicker:didTakePhoto:)]) {
-        [self.delegate cameraPicker:self didTakePhoto:capturedImage.fullImage];
-    }
+//    if ([self.delegate respondsToSelector:@selector(cameraPicker:didTakePhoto:)]) {
+//        [self.delegate cameraPicker:self didTakePhoto:capturedImage.fullImage];
+//    }
+    self.previewPhoto = capturedImage.fullImage;
 }
 
 #pragma mark - Action Handlers
+
+- (IBAction)didTapRetakeButton:(UIButton *)sender {
+    [self switchToState:Shoot];
+}
 
 - (IBAction)didTapFlashButton:(UIButton *)sender {
 }
@@ -68,12 +85,43 @@
 }
 
 - (IBAction)didTapCaptureButton:(UIButton *)sender {
-    [self.camera takePicture];
+    if (self.state == Shoot) {
+        [self switchToState:Preview];
+    }
+    else if (self.state == Preview) {
+        if ([self.delegate respondsToSelector:@selector(cameraPicker:didTakePhoto:)]) {
+            [self.delegate cameraPicker:self didTakePhoto:self.previewPhoto];
+        }
+
+    }
 }
 
 - (IBAction)didTapBackButton:(UIButton *)sender {
     if ([self.delegate respondsToSelector:@selector(cameraPickerDidCancel:)]) {
         [self.delegate cameraPickerDidCancel:self];
+    }
+}
+
+- (void)switchToState:(GMCameraPickerVCState)state {
+    switch (state) {
+        case Shoot:
+            self.previewPhoto = nil;
+            [self.camera startRunning];
+            self.retakeButton.hidden = YES;
+            self.flashButton.hidden = NO;
+            self.rotateButton.hidden = NO;
+            [self.captureButton setTitle:@"" forState:UIControlStateNormal];
+            break;
+        case Preview:
+            [self.camera takePicture];
+            self.retakeButton.hidden = NO;
+            self.flashButton.hidden = YES;
+            self.rotateButton.hidden = YES;
+            [self.camera stopRunning];
+            [self.captureButton setTitle:@"OK" forState:UIControlStateNormal];
+            break;
+        default:
+            break;
     }
 }
 

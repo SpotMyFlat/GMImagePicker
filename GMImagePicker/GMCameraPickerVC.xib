@@ -10,6 +10,7 @@
                 <outlet property="cameraView" destination="TMO-vP-hr8" id="bdu-Ww-jEP"/>
                 <outlet property="captureButton" destination="vxb-ht-DOu" id="c0q-ag-J9R"/>
                 <outlet property="flashButton" destination="ZfF-BB-Pgl" id="gTq-rH-Dht"/>
+                <outlet property="retakeButton" destination="9jw-ig-PDG" id="Bte-ky-2Ty"/>
                 <outlet property="rotateButton" destination="pag-Fi-kp0" id="ajF-R5-t15"/>
                 <outlet property="view" destination="nNj-8A-2HS" id="S6a-G2-Xgw"/>
             </connections>
@@ -64,17 +65,34 @@
                                 <constraint firstAttribute="width" constant="50" id="ZGO-pa-91o"/>
                                 <constraint firstAttribute="height" constant="50" id="fN2-Ip-ah5"/>
                             </constraints>
+                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="15"/>
                             <state key="normal">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
                                 <action selector="didTapCaptureButton:" destination="-1" eventType="touchUpInside" id="yfm-fh-3YE"/>
                             </connections>
                         </button>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9jw-ig-PDG">
+                            <rect key="frame" x="82" y="89" width="50" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="SIF-Za-knF"/>
+                                <constraint firstAttribute="height" constant="50" id="Ul9-8m-gW5"/>
+                            </constraints>
+                            <state key="normal" image="GMIconRotate.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="didTapRetakeButton:" destination="-1" eventType="touchUpInside" id="hMF-j9-WD6"/>
+                            </connections>
+                        </button>
                     </subviews>
-                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstItem="9jw-ig-PDG" firstAttribute="centerY" secondItem="vxb-ht-DOu" secondAttribute="centerY" id="9AX-tW-2bm"/>
                         <constraint firstAttribute="centerY" secondItem="vxb-ht-DOu" secondAttribute="centerY" id="U3V-ui-yjY"/>
+                        <constraint firstItem="vxb-ht-DOu" firstAttribute="leading" secondItem="9jw-ig-PDG" secondAttribute="trailing" constant="30" id="Vig-NI-nLe"/>
                         <constraint firstAttribute="centerX" secondItem="vxb-ht-DOu" secondAttribute="centerX" id="b7g-MN-c0G"/>
                     </constraints>
                 </view>
