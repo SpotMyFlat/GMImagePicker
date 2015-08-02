@@ -9,14 +9,14 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSInteger, FastttCameraDevice) {
-    FastttCameraDeviceFront,
-    FastttCameraDeviceRear
+    FastttCameraDeviceFront = 1,
+    FastttCameraDeviceRear = 0
 };
 
 typedef NS_ENUM(NSInteger, FastttCameraFlashMode) {
-    FastttCameraFlashModeOff,
-    FastttCameraFlashModeOn,
-    FastttCameraFlashModeAuto
+    FastttCameraFlashModeOff = 1,
+    FastttCameraFlashModeOn = 2,
+    FastttCameraFlashModeAuto = 0
 };
 
 typedef NS_ENUM(NSInteger, FastttCameraTorchMode) {

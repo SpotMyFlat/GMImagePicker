@@ -14,6 +14,17 @@ typedef enum GMCameraPickerVCState : NSUInteger {
     Preview
 } GMCameraPickerVCState;
 
+//typedef enum GMCameraPickerVFlashMode : NSUInteger {
+//    Auto = 0,
+//    On = 1,
+//    Off = 2
+//} GMCameraPickerVCFlashMode;
+//
+//typedef enum GMCameraPickerVCameraMode : NSUInteger {
+//    Back = 0,
+//    Front = 1
+//} GMCameraPickerVCCameraMode;
+
 @interface GMCameraPickerVC () <FastttCameraDelegate>
 
 @property (nonatomic, strong) FastttCamera *camera;
@@ -25,6 +36,8 @@ typedef enum GMCameraPickerVCState : NSUInteger {
 @property (weak, nonatomic) IBOutlet UIButton *captureButton;
 
 @property (nonatomic, assign) GMCameraPickerVCState state;
+@property (nonatomic, assign) FastttCameraDevice cameraMode;
+@property (nonatomic, assign) FastttCameraFlashMode flashMode;
 
 @property (nonatomic, strong) UIImage *previewPhoto;
 
@@ -42,6 +55,8 @@ typedef enum GMCameraPickerVCState : NSUInteger {
     [self.view bringSubviewToFront:self.rotateButton];
     
     self.state = Shoot;
+    self.cameraMode = 0;
+    self.flashMode = 0;
 }
 
 - (void)viewDidLayoutSubviews {
@@ -63,6 +78,30 @@ typedef enum GMCameraPickerVCState : NSUInteger {
     self.captureButton.layer.cornerRadius = 50.0 / 2.0;
 }
 
+- (void)toggleCamera {
+    self.cameraMode = (self.cameraMode + 1) % 2;
+    [self.camera setCameraDevice:self.cameraMode];
+}
+
+- (void)toggleFlash {
+    self.flashMode = (self.flashMode + 1) % 3;
+    [self.camera setCameraFlashMode:self.flashMode];
+    
+    switch (self.flashMode) {
+        case FastttCameraFlashModeAuto:
+            [self.flashButton setImage:[UIImage imageNamed:@"GMIconFlashAuto.png"] forState:UIControlStateNormal];
+            break;
+        case FastttCameraFlashModeOn:
+            [self.flashButton setImage:[UIImage imageNamed:@"GMIconFlashOn.png"] forState:UIControlStateNormal];
+            break;
+        case FastttCameraFlashModeOff:
+            [self.flashButton setImage:[UIImage imageNamed:@"GMIconFlashOff.png"] forState:UIControlStateNormal];
+            break;
+        default:
+            break;
+    }
+}
+
 #pragma mark - FastttCameraDelegate
 
 - (void)cameraController:(id<FastttCameraInterface>)cameraController didFinishNormalizingCapturedImage:(FastttCapturedImage *)capturedImage {
@@ -79,9 +118,11 @@ typedef enum GMCameraPickerVCState : NSUInteger {
 }
 
 - (IBAction)didTapFlashButton:(UIButton *)sender {
+    [self toggleFlash];
 }
 
 - (IBAction)didTapRotateButton:(UIButton *)sender {
+    [self toggleCamera];
 }
 
 - (IBAction)didTapCaptureButton:(UIButton *)sender {
