@@ -54,7 +54,7 @@
 @end
 
 
-@interface GMGridViewController () <PHPhotoLibraryChangeObserver>
+@interface GMGridViewController () <PHPhotoLibraryChangeObserver, GMCameraPickerVCDelegate>
 
 @property (nonatomic, weak) GMImagePickerController *picker;
 @property (strong) PHCachingImageManager *imageManager;
@@ -220,9 +220,9 @@ NSString * const GMCameraCellIdentifier = @"GMCameraCellIdentifier";
                                                                    nil]
                                                          forState:UIControlStateNormal];
     
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
     [self.navigationItem.rightBarButtonItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                                     [UIFont fontWithName:@"AvenirNext-DemiBold" size:16.0], NSFontAttributeName,
-                                                                    [UIColor whiteColor], NSForegroundColorAttributeName,
                                                                     nil]
                                                           forState:UIControlStateNormal];
 }
@@ -230,6 +230,17 @@ NSString * const GMCameraCellIdentifier = @"GMCameraCellIdentifier";
 - (void)setupToolbar
 {
     self.toolbarItems = self.picker.toolbarItems;
+}
+
+#pragma mark - GMCameraPickerVCDelegate
+
+- (void)cameraPicker:(id)cameraPicker didTakePhoto:(UIImage *)photo {
+    [self.navigationController popViewControllerAnimated:NO];
+    [self.picker finishPickingCamera:photo];
+}
+
+- (void)cameraPickerDidCancel:(id)cameraPicker {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Collection View Layout
@@ -383,6 +394,7 @@ NSString * const GMCameraCellIdentifier = @"GMCameraCellIdentifier";
         [collectionView deselectItemAtIndexPath:indexPath animated:NO];
         
         GMCameraPickerVC *picker = [[GMCameraPickerVC alloc] initWithNibName:@"GMCameraPickerVC" bundle:nil];
+        picker.delegate = self;
         [self.navigationController pushViewController:picker animated:YES];
         
         return;

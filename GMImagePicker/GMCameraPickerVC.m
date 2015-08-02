@@ -9,7 +9,7 @@
 #import "GMCameraPickerVC.h"
 #import "FastttCamera.h"
 
-@interface GMCameraPickerVC ()
+@interface GMCameraPickerVC () <FastttCameraDelegate>
 
 @property (nonatomic, strong) FastttCamera *camera;
 
@@ -26,6 +26,7 @@
     [super viewDidLoad];
     
     self.camera = [FastttCamera new];
+    self.camera.delegate = self;
     [self fastttAddChildViewController:self.camera];
     [self.view bringSubviewToFront:self.flashButton];
     [self.view bringSubviewToFront:self.rotateButton];
@@ -50,6 +51,14 @@
     self.captureButton.layer.cornerRadius = 50.0 / 2.0;
 }
 
+#pragma mark - FastttCameraDelegate
+
+- (void)cameraController:(id<FastttCameraInterface>)cameraController didFinishNormalizingCapturedImage:(FastttCapturedImage *)capturedImage {
+    if ([self.delegate respondsToSelector:@selector(cameraPicker:didTakePhoto:)]) {
+        [self.delegate cameraPicker:self didTakePhoto:capturedImage.fullImage];
+    }
+}
+
 #pragma mark - Action Handlers
 
 - (IBAction)didTapFlashButton:(UIButton *)sender {
@@ -59,10 +68,13 @@
 }
 
 - (IBAction)didTapCaptureButton:(UIButton *)sender {
+    [self.camera takePicture];
 }
 
 - (IBAction)didTapBackButton:(UIButton *)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    if ([self.delegate respondsToSelector:@selector(cameraPickerDidCancel:)]) {
+        [self.delegate cameraPickerDidCancel:self];
+    }
 }
 
 @end

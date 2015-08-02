@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GMCameraPickerVC : UIViewController
+@protocol GMCameraPickerVCDelegate <NSObject>
 
+- (void)cameraPicker:(id)cameraPicker didTakePhoto:(UIImage *)photo;
+- (void)cameraPickerDidCancel:(id)cameraPicker;
+
+@end
+
+@interface GMCameraPickerVC : UIViewController
+@property (nonatomic, weak) id<GMCameraPickerVCDelegate> delegate;
 @end

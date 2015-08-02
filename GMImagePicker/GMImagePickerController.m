@@ -101,7 +101,9 @@
 {
     UINavigationController *nav = (UINavigationController *)self.childViewControllers[0];
     for (UIViewController *viewController in nav.viewControllers)
+    {
         viewController.navigationItem.rightBarButtonItem.enabled = (self.selectedAssets.count > 0);
+    }
 }
 
 - (void)updateToolbar
@@ -131,6 +133,13 @@
         [self.delegate assetsPickerController:self didFinishPickingAssets:self.selectedAssets];
     
     //[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)finishPickingCamera:(UIImage *)photo {
+    
+    if ([self.delegate respondsToSelector:@selector(assetsPickerController:didFinishPickingImageFromCamera:)]) {
+        [self.delegate assetsPickerController:self didFinishPickingImageFromCamera:photo];
+    }
 }
 
 

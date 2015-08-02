@@ -77,9 +77,9 @@ static NSString * const CollectionCellReuseIdentifier = @"CollectionCell";
     
     [self.navigationItem.rightBarButtonItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                                    [UIFont fontWithName:@"AvenirNext-DemiBold" size:16.0], NSFontAttributeName,
-                                                                   [UIColor whiteColor], NSForegroundColorAttributeName,
                                                                    nil]
                                                          forState:UIControlStateNormal];
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
     
     self.navigationItem.rightBarButtonItem.enabled = (self.picker.selectedAssets.count > 0);
     
